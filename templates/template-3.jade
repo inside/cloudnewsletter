@@ -1,0 +1,44 @@
+extends ./layout.jade
+
+mixin article(prefix)
+  table(cellspacing="0"
+        cellpadding="0"
+        width="100%"
+        border=table_border)
+    tr
+      td
+        div(mc:edit=prefix + "_text_1"
+            style="background-color: #4199d8; padding: 10px;")
+          = '[Editable ' + prefix + '_text_1, maximum width: 180px]'
+    tr: td(height="5")
+    tr
+      td
+        div(mc:edit=prefix + "_text_2")
+          = '[Editable ' + prefix + '_text_2]'
+
+block content
+  table(cellspacing="0"
+        cellpadding="0"
+        border=table_border
+        bgcolor="ffffff"
+        width="100%")
+    tr
+      td
+        table(cellspacing="15"
+              cellpadding="0"
+              border=table_border
+              width="100%")
+          tr
+            td(colspan="3"
+              mc:edit="primary_title").
+              [Editable primary_title]
+          tr
+            td(valign="top"
+               width="33%")
+              +article('article_1')
+            td(valign="top"
+               width="33%")
+              +article('article_2')
+            td(valign="top"
+               width="33%")
+              +article('article_3')
