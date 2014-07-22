@@ -10,7 +10,7 @@ mixin article(prefix)
         div(mc:edit=prefix + "_title")
           = '[Editable ' + prefix + '_title]'
     tr
-      td
+      td(align="center")
         div(mc:edit=prefix + "_text_1"
             style="background-color: #4199d8; padding: 10px;")
           = '[Editable ' + prefix + '_text_1, maximum width: 278px]'
@@ -23,7 +23,7 @@ block content
   table(cellspacing="0"
         cellpadding="0"
         border=table_border
-        bgcolor="ffffff"
+        bgcolor="#ffffff"
         width="100%")
     tr
       td
@@ -35,7 +35,7 @@ block content
             td(mc:edit="primary_title").
               [Editable primary_title]
           tr
-            td
+            td(align="center")
               div(mc:edit="primary_text_1"
                   style="background-color: #4199d8; padding: 10px;").
                 [Editable primary_text_1, maximum width: 610px]
@@ -49,7 +49,7 @@ block content
                       {'background-color': '#63a635', 'color': '#fff'})
     tr
       td(height=row_gap
-         bgcolor="ebebeb")
+         bgcolor="#ebebeb")
     tr
       td
         table(cellspacing="15"
