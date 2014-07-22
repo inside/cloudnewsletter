@@ -1,0 +1,30 @@
+extends ./layout.jade
+
+block content
+  table(cellspacing="0"
+        cellpadding="0"
+        border=table_border
+        bgcolor="ffffff"
+        width="100%")
+    tr
+      td
+        table(cellspacing="15"
+              cellpadding="0"
+              border=table_border
+              width="100%")
+          tr
+            td(mc:edit="primary_title").
+              [Editable primary_title]
+          tr
+            td
+              div(mc:edit="primary_text_1").
+                [Editable primary_text_1]
+          tr
+            td
+              div(mc:edit="primary_text_2"
+                  style="background-color: #4199d8; padding: 10px;").
+                [Editable primary_text_2, maximum width: 610px]
+          tr
+            td(align="center")
+              +button('Apply online',
+                      {'background-color': '#63a635', 'color': '#fff'})
