@@ -1,7 +1,7 @@
 - var row_gap = 50;
 - var table_border = 0; // Set to 1 to debug
 
-mixin button(label, css, image)
+mixin button(label, href, css, image)
   - var style = [];
   - var appliedCss = {};
 
@@ -14,6 +14,10 @@ mixin button(label, css, image)
   - appliedCss['padding'] = '10px 15px';
   - appliedCss['background-color'] = '#fff';
 
+  - if (image) {
+  -   image = '<img src="' + image + '" border="0" alt="" style="padding-right: 10px; vertical-align: top;">';
+  -   appliedCss['padding'] = '10px 15px 8px 15px';
+  - }
   - // Merge css properties into appliedCss
   - for (var attrName in css) {
   -   appliedCss[attrName] = css[attrName];
@@ -21,11 +25,8 @@ mixin button(label, css, image)
   - for (var attrName in appliedCss) {
   -   style.push(attrName + ': ' + appliedCss[attrName])
   - }
-  - if (image) {
-  -   image = '<img src="' + image + '" border="0" alt="" style="padding-right: 10px; margin-bottom: -5px">';
-  - }
 
-  a(href="[link_placeholder]"
+  a(href=href
     style=style.join(';'))
     != image
     = label
@@ -48,7 +49,7 @@ html
            colspan="3"
            bgcolor="#ffffff")
           p(mc:edit="top_disclaimer").
-            [Editable top_disclaimer]
+            <a href="*|ARCHIVE|*">[Editable top_disclaimer]</a>
       tr
         td(height="65"
            colspan="3"
@@ -76,9 +77,11 @@ html
         td(align="center"
            colspan="3")
           +button('Follow us',
+                  'http://www.twitter.com/dm_cloud',
                   {'margin-right': '20px'},
                   'https://gallery.mailchimp.com/9eeab265312a39dae07fe3e23/images/166e971f-7a84-4621-a8c3-1475702ee29d.jpg')
-          +button('Visit DM Cloud')
+          +button('Visit DM Cloud',
+                  'http://www.dmcloud.net')
       tr
         td(height=row_gap
            colspan="3")
