@@ -4,32 +4,48 @@
 mixin button(label, href, css, image)
   - var style = [];
   - var appliedCss = {};
+  - var bgcolor = '#ffffff';
 
   - appliedCss['text-decoration'] = 'none';
   - appliedCss['font-weight'] = 'bold';
   - appliedCss['font-size'] = '14px';
   - appliedCss['font-family'] = 'arial';
   - appliedCss['color'] = '#0b71b7';
-  - appliedCss['display'] = 'inline-block';
-  - appliedCss['padding'] = '10px 15px';
-  - appliedCss['background-color'] = '#fff';
 
   - if (image) {
-  -   image = '<img src="' + image + '" border="0" alt="" style="padding-right: 10px; vertical-align: top;">';
-  -   appliedCss['padding'] = '10px 15px 8px 15px';
+  -   image = '<img src="' + image + '" width="24" height="19" border="0" alt="" style="">';
   - }
   - // Merge css properties into appliedCss
   - for (var attrName in css) {
+  -   if (attrName === 'background-color') {
+  -     var bgcolor = css[attrName];
+  -     continue;
+  -   }
   -   appliedCss[attrName] = css[attrName];
   - }
   - for (var attrName in appliedCss) {
   -   style.push(attrName + ': ' + appliedCss[attrName])
   - }
 
-  a(href=href
-    style=style.join(';'))
-    != image
-    = label
+  table(cellpadding="0"
+        cellspacing="0"
+        border=table_border)
+    tr
+      td(align="center"
+         bgcolor=bgcolor
+         width="150"
+         height="40")
+        table(cellpadding="0"
+              cellspacing="0"
+              border=table_border)
+          tr
+            if image
+              td(width="30")
+                != image
+            td
+              a(href=href
+                style=style.join(';'))
+                = label
 
 doctype html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"
 html
@@ -51,16 +67,14 @@ html
           p(mc:edit="top_disclaimer").
             <a href="*|ARCHIVE|*">[Editable top_disclaimer]</a>
       tr
-        td(height="65"
-           colspan="3"
-           bgcolor="#2b2d31")
+        td(height="66"
+           colspan="3")
           a(href="http://www.dmcloud.net/"
             target="_blank"
             title="Visit dmcloud.net")
-            img(src="https://gallery.mailchimp.com/9eeab265312a39dae07fe3e23/images/fb8d0788-2ee2-4263-84c0-7c96d4a40fbf.png"
-                width="194"
-                height="35"
-                style="display: block; border: 0; margin-left: 50px;"
+            img(src="https://gallery.mailchimp.com/9eeab265312a39dae07fe3e23/images/0d7cd5e8-8cd6-4468-b685-d761dcb502c6.png"
+                width="760"
+                height="66"
                 alt="dmcloud.net"
                 title="dmcloud.net")
       tr
@@ -76,12 +90,19 @@ html
       tr
         td(align="center"
            colspan="3")
-          +button('Follow us',
-                  'http://www.twitter.com/dm_cloud',
-                  {'margin-right': '20px'},
-                  'https://gallery.mailchimp.com/9eeab265312a39dae07fe3e23/images/166e971f-7a84-4621-a8c3-1475702ee29d.jpg')
-          +button('Visit DM Cloud',
-                  'http://www.dmcloud.net')
+          table(cellpadding="0"
+                cellspacing="0"
+                border=table_border)
+            tr
+              td
+                +button('Follow us',
+                        'http://www.twitter.com/dm_cloud',
+                        {},
+                        'https://gallery.mailchimp.com/9eeab265312a39dae07fe3e23/images/166e971f-7a84-4621-a8c3-1475702ee29d.jpg')
+              td(width="20")
+              td
+                +button('Visit DM Cloud',
+                        'http://www.dmcloud.net')
       tr
         td(height=row_gap
            colspan="3")
